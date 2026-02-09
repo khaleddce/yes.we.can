@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yes We Can - منصة التعليم البرمجي</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0d7377 0%, #14ffec 100%);
+            color: #333;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(20, 255, 236, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(13, 115, 119, 0.3) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+            animation: backgroundFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundFloat {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(13, 115, 119, 0.9) 0%, rgba(32, 164, 243, 0.8) 100%);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(13, 115, 119, 0.5);
+            position: relative;
+            z-index: 1;
+            border-bottom: 3px solid #14ffec;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            animation: fadeInDown 1s ease-out;
+            background: linear-gradient(45deg, #14ffec, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(20, 255, 236, 0.5));
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.3s both;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(13, 115, 119, 0.4);
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out 0.5s both;
+            border: 2px solid rgba(20, 255, 236, 0.3);
+        }
+
+        h2 {
+            color: #0d7377;
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #0d7377, #14ffec);
+            border-radius: 2px;
+            box-shadow: 0 2px 10px rgba(20, 255, 236, 0.5);
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(20, 255, 236, 0.3);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(20, 255, 236, 0.3) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover::before {
+            transform: scale(1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(20, 255, 236, 0.5);
+            border-color: #14ffec;
+        }
+
+        .card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .card p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #0d7377, #14ffec, #0d7377, transparent);
+            margin: 40px 0;
+            box-shadow: 0 2px 10px rgba(20, 255, 236, 0.3);
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #0d7377;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        select {
+            padding: 15px;
+            border: 2px solid #b8e6e4;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+            width: 100%;
+        }
+
+        input[type="text"]:focus,
+        input[type="tel"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #0d7377;
+            box-shadow: 0 0 0 4px rgba(20, 255, 236, 0.2);
+            transform: translateY(-2px);
+            background: #f0fffe;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 30px;
+            padding: 15px;
+            background: linear-gradient(135deg, #e0f7f6 0%, #cef4f3 100%);
+            border-radius: 10px;
+            border: 2px solid #b8e6e4;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+            color: #0d7377;
+        }
+
+        input[type="radio"] {
+            margin-left: 10px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #0d7377;
+        }
+
+        button {
+            background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.3em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(13, 115, 119, 0.4);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(20, 255, 236, 0.4);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(20, 255, 236, 0.6);
+            border-color: #14ffec;
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .success-msg {
+            background: linear-gradient(135deg, #0d7377 0%, #14a085 100%);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+            display: none;
+            animation: slideInDown 0.5s ease-out;
+            box-shadow: 0 4px 15px rgba(20, 255, 236, 0.5);
+            border: 2px solid #14ffec;
+        }
+
+        .success-msg.show {
+            display: block;
+        }
+
+        footer {
+            background: linear-gradient(135deg, rgba(13, 115, 119, 0.95) 0%, rgba(32, 164, 243, 0.9) 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+            border-top: 3px solid #14ffec;
+            box-shadow: 0 -4px 20px rgba(20, 255, 236, 0.3);
+        }
+
+        footer p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        footer a {
+            color: #14ffec;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 10px 15px;
+            padding: 10px 20px;
+            background: rgba(20, 255, 236, 0.2);
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(20, 255, 236, 0.4);
+        }
+
+        footer a:hover {
+            background: rgba(20, 255, 236, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(20, 255, 236, 0.5);
+            border-color: #14ffec;
+            color: white;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: none;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(20, 255, 236, 0.3);
+            border-top-color: #14ffec;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .container {
+                margin: 20px;
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .radio-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            button {
+                font-size: 1.1em;
+            }
+        }
+
+        /* Emoji animations */
+        .emoji {
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Phone input wrapper */
+        .phone-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .country-code {
+            position: absolute;
+            left: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #0d7377;
+            background: #e0f7f6;
+            padding: 8px 12px;
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 1;
+            border: 1px solid #b8e6e4;
+        }
+
+        input[type="tel"] {
+            padding-right: 15px;
+            padding-left: 85px;
+        }
+
+        .helper-text {
+            font-size: 0.9em;
+            color: #0d7377;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+
+        /* Decorative elements */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #14ffec, #0d7377, #14ffec);
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .container:hover::before {
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>✨ YES WE CAN ✨</h1>
+    <p>منصة التعليم البرمجي الحديثة - تعلم البرمجة بسهولة واحترافية</p>
+</header>
+
+<div class="container">
+    <section>
+        <h2><span class="emoji">🎓</span> اختر طريقة التعلم المناسبة لك</h2>
+        <div class="services">
+            <div class="card">
+                <div class="icon">🏫</div>
+                <h3>أوفلاين</h3>
+                <p>تعليم مباشر في السنتر مع المدرس</p>
+                <p style="margin-top: 10px; font-size: 0.9em;">📍 تفاعل مباشر وجهاً لوجه</p>
+            </div>
+            <div class="card">
+                <div class="icon">💻</div>
+                <h3>أونلاين</h3>
+                <p>تعليم عن بُعد عبر Zoom</p>
+                <p style="margin-top: 10px; font-size: 0.9em;">🌐 تعلم من أي مكان</p>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="register">
+        <h2>📝 سجل بياناتك للإشتراك</h2>
+        
+        <div class="success-msg" id="successMsg">
+            ✅ تم إرسال بياناتك بنجاح! سنتواصل معك قريباً
+        </div>
+
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="studentName">👤 اسم الطالب بالكامل:</label>
+                <input 
+                    type="text" 
+                    id="studentName"
+                    name="StudentName" 
+                    placeholder="اكتب اسمك الكامل هنا" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">📱 رقم الهاتف (واتساب):</label>
+                <div class="phone-input-wrapper">
+                    <span class="country-code">+20</span>
+                    <input 
+                        type="tel" 
+                        id="phone"
+                        name="Phone" 
+                        placeholder="1012345678" 
+                        pattern="^1[0-2,5]{1}[0-9]{8}$"
+                        maxlength="10"
+                        required>
+                </div>
+                <small class="helper-text">* أدخل رقم مصري (10 أرقام) يبدأ بـ 10، 11، 12، أو 15</small>
+            </div>
+
+            <div class="form-group">
+                <label for="level">🎓 المرحلة الدراسية:</label>
+                <select id="level" name="Level" required>
+                    <option value="" disabled selected>اختر المرحلة الدراسية</option>
+                    <option value="Primary">ابتدائي</option>
+                    <option value="Middle">إعدادي</option>
+                    <option value="Secondary">ثانوي</option>
+                    <option value="University">جامعي</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="language">💻 لغة البرمجة المطلوبة:</label>
+                <select id="language" name="Language" required>
+                    <option value="" disabled selected>اختر لغة البرمجة</option>
+                    <option value="HTML">HTML - لغة بناء صفحات الويب</option>
+                    <option value="CSS">CSS - تصميم وتنسيق المواقع</option>
+                    <option value="JavaScript">JavaScript - برمجة تفاعلية</option>
+                    <option value="Scratch">Scratch - البرمجة للمبتدئين</option>
+                    <option value="Dart">Dart - لغة حديثة</option>
+                    <option value="Flutter">Flutter - تطوير التطبيقات</option>
+                    <option value="Python">Python - برمجة شاملة</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>🎯 نوع الدراسة المفضل:</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="LearningMode" value="Online" checked>
+                        💻 أونلاين
+                    </label>
+                    <label>
+                        <input type="radio" name="LearningMode" value="Offline">
+                        🏫 أوفلاين
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit">
+                <span id="btnText">إرسال البيانات للاشتراك 🚀</span>
+                <div class="loading" id="loading"></div>
+            </button>
+        </form>
+    </section>
+</div>
+
+<footer>
+    <p>جميع الحقوق محفوظة &copy; 2026 YES WE CAN</p>
+   
+    
+    <p>📞 للتواصل واتساب: +20 102 052 8717</p>
+    <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.9;">
+        نحن هنا لمساعدتك في رحلتك البرمجية 💪
+    </p>
+    <h4>ENG KHALED RAOUF</h4>
+</footer>
+
+<script>
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxlGPde0a9s-qDLGhYRzD9prD93O8RQHEmSE8bhn7HH2g6GGEehjGCIZ8QxWRYAsBFzKw/exec';
+const form = document.getElementById('registrationForm');
+const successMsg = document.getElementById('successMsg');
+const btnText = document.getElementById('btnText');
+const loading = document.getElementById('loading');
+const phoneInput = document.getElementById('phone');
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    
+    // Show loading
+    btnText.style.display = 'none';
+    loading.style.display = 'block';
+    
+    const formData = new FormData(form);
+    const data = {};
+    formData.forEach((value, key) => {
+        // إضافة كود الدولة +20 لرقم الهاتف
+        if (key === 'Phone') {
+            data[key] = '+20' + value;
+        } else {
+            data[key] = value;
+        }
+    });
+    
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        mode: 'no-cors'
+    })
+    .then(response => {
+        // Hide loading
+        btnText.style.display = 'inline';
+        loading.style.display = 'none';
+        
+        // Show success message
+        successMsg.classList.add('show');
+        form.reset();
+        
+        // Scroll to success message
+        successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+            successMsg.classList.remove('show');
+        }, 5000);
+    })
+    .catch(error => {
+        // Hide loading
+        btnText.style.display = 'inline';
+        loading.style.display = 'none';
+        
+        alert('❌ حدث خطأ في الإرسال. يرجى المحاولة مرة أخرى');
+        console.error('Error!', error.message);
+    });
+});
+
+// Real-time phone validation
+phoneInput.addEventListener('input', function(e) {
+    // Remove any non-numeric characters
+    this.value = this.value.replace(/[^0-9]/g, '');
+    
+    // Limit to 10 digits
+    if (this.value.length > 10) {
+        this.value = this.value.slice(0, 10);
+    }
+    
+    // Auto-remove leading 0 if user adds it
+    if (this.value.startsWith('0')) {
+        this.value = this.value.substring(1);
+    }
+});
+
+// Add smooth scroll behavior
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+</script>
+
+</body>
+</html>
